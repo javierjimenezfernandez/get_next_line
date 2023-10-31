@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:46:05 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/26 20:43:33 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:48:30 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ int	ft_lentoeol(char *line, int *eol_flag)
 	return (i);
 }
 
-int	ft_findeol(char *line, char *eol)
+int	ft_findeol(char *line, char **eol, int buff_len)
 {
 	int		i;
 
 	i = 0;
-	while (line[i] != '\0' && line[i] != '\n' && (i + 1) < BUFFER_SIZE)
+	while (line[i] != '\0' && line[i] != '\n' && i < buff_len)
 		i++;
-	if (line[i] == '\n' || line[i] == '\0')
-		eol = &line[i];
+	if (line[i] == '\n')
+		*eol = &line[i];
 	else
-		eol = NULL;
+		*eol = NULL;
 	return (i);
 }
 
