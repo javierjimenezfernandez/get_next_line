@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:03:59 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/31 17:47:47 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:29:01 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ void	ft_putline(char *line)
 	int	i;
 
 	i = 0;
+	write(1, "line read = \"", 13);
 	while (line[i] != '\0' && line[i] != '\n')
 	{
 		write(1, &line[i], 1);
 		i++;
 	}
+	write(1, "\"", 1);
 	write(1, &line[i], 1);
 }
 
@@ -53,10 +55,14 @@ int	main(void)
 	while (i)
 	{
 		ft_putline(new_line);
+		printf("---------\n\n");
 		free(new_line);
 		new_line = get_next_line(fd);
 		i--;
 	}
+	ft_putline(new_line);
+	printf("---------\n\n");
 	close(fd);
+	//system("leaks a.out");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:46:19 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/31 16:27:12 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:17:14 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n);
 int		ft_lentoeol(char *line, int *eol_flag);
 int		ft_findeol(char *line, char **eol, int buff_len);
 int		ft_strlen(char *str);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif
