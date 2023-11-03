@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:03:59 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/02 16:29:01 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:41:09 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,53 +16,91 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-/*size_t	ft_linelen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len] != '\0' && s[len] != '\n')
-		len++;
-	return (len);
-}*/
-
-void	ft_putline(char *line)
-{
-	int	i;
-
-	i = 0;
-	write(1, "line read = \"", 13);
-	while (line[i] != '\0' && line[i] != '\n')
-	{
-		write(1, &line[i], 1);
-		i++;
-	}
-	write(1, "\"", 1);
-	write(1, &line[i], 1);
-}
-
 int	main(void)
 {
 	int		fd;
 	char	*new_line;
 	int		i;
 
-	fd = open("test_file.txt", O_RDONLY);
+	printf("\nTEST 1: EMPTY FILE\n-_-_-_-_-_-_-_-_-_-\n\n");
+	fd = open("empty_file.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
 	new_line = get_next_line(fd);
-	i = 4;
-	while (i)
+	while (new_line)
 	{
-		ft_putline(new_line);
+		printf("line read = \"%s\"\n", new_line);
 		printf("---------\n\n");
 		free(new_line);
 		new_line = get_next_line(fd);
-		i--;
 	}
-	ft_putline(new_line);
+	printf("line read = \"%s\"\n", new_line);
 	printf("---------\n\n");
 	close(fd);
+
+
+	printf("\nTEST 2: NORMAL FILE\n-_-_-_-_-_-_-_-_-_-_-\n\n");
+	fd = open("test_file_1.txt", O_RDONLY);
+	if (fd < 0)
+		return (0);
+	new_line = get_next_line(fd);
+	while (new_line)
+	{
+		printf("line read = \"%s\"\n", new_line);
+		printf("---------\n\n");
+		free(new_line);
+		new_line = get_next_line(fd);
+	}
+	printf("line read = \"%s\"\n", new_line);
+	printf("---------\n\n");
+	close(fd);
+
+	printf("\nTEST 3: FILE WITHOUT \'\\n\' AT EOF\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
+	fd = open("test_file_2.txt", O_RDONLY);
+	if (fd < 0)
+		return (0);
+	new_line = get_next_line(fd);
+	while (new_line)
+	{
+		printf("line read = \"%s\"\n", new_line);
+		printf("---------\n\n");
+		free(new_line);
+		new_line = get_next_line(fd);
+	}
+	printf("line read = \"%s\"\n", new_line);
+	printf("---------\n\n");
+	close(fd);
+
+	printf("\nTEST 4: EMPTY FILE BUT CONTAINS 1 EMPTY LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	fd = open("test_file_3.txt", O_RDONLY);
+	if (fd < 0)
+		return (0);
+	new_line = get_next_line(fd);
+	while (new_line)
+	{
+		printf("line read = \"%s\"\n", new_line);
+		printf("---------\n\n");
+		free(new_line);
+		new_line = get_next_line(fd);
+	}
+	printf("line read = \"%s\"\n", new_line);
+	printf("---------\n\n");
+	close(fd);
+
+	i = 2;
+	printf("\nTEST 5: READ %d LINES FORM SCREEN (fd = 0)\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n", i);
+	fd = 0;
+	new_line = get_next_line(fd);
+	while (--i)
+	{
+		printf("line read = \"%s\"\n", new_line);
+		printf("---------\n\n");
+		free(new_line);
+		new_line = get_next_line(fd);
+	}
+	printf("line read = \"%s\"\n", new_line);
+	printf("---------\n\n");
+
 	//system("leaks a.out");
 	return (0);
 }

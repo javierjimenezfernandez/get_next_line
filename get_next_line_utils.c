@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:46:05 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/02 17:43:35 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:41:59 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	return (dest);
 }
 
+size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i] != '\0' && (i + 1) < dstsize)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dstsize != 0)
+		dst[i] = '\0';
+	return (ft_strlen(src));
+}
+
 int	ft_lentoeol(char *line, int *eol_flag)
 {
 	int	i;
@@ -39,31 +54,33 @@ int	ft_lentoeol(char *line, int *eol_flag)
 	return (i);
 }
 
-int	ft_findeol(char *line, char **eol, int buff_len)
+int	ft_findeol(char *line, char **eol)
 {
 	int		i;
 
 	i = 0;
-	while (line[i] != '\0' && line[i] != '\n' && (i + 1) < buff_len)
-		i++;
-	if (line[i] == '\n')
+	while (line[i] != '\0')
 	{
-		*eol = &line[i];
-		//write(1, "found \\n\n", 9); 
+		if (line[i] == '\n')
+		{
+			*eol = &line[i];
+			break ;
+		}
+		else
+			*eol = NULL;
+		i++;
 	}
-	else
-		*eol = NULL;
 	return (i);
 }
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(char *s)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (len);
 }
 
 void	*ft_calloc(size_t count, size_t size)
