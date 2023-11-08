@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:46:19 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/08 19:34:45 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/09 00:12:54 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@
 # endif
 
 char	*get_next_line(int fd);
+
+typedef struct s_buff
+{
+	int		fd;
+	char	*content;
+	size_t	prev_len;
+	char	*eol;
+	size_t	line_len;
+}				t_buff;
 
 /* AUX FUNCTIONS */
 size_t	ft_strlen(char *str);
