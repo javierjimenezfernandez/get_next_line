@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_works.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:45:45 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/08 19:48:02 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:13:41 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_next_line(int fd)
 			n = read(fd, &buff[i], BUFFER_SIZE);
 			if (n < 0)
 			{
-				ft_clear_str(static_buff, BUFFER_SIZE + 1);
+				static_buff[0] = '\0';
 				free(buff);
 				return (NULL);
 			}
@@ -56,20 +56,13 @@ char	*get_next_line(int fd)
 		}
 		if (eol || n == 0)
 		{
-			if (!eol)
-				line = (char *)malloc((line_len + 1) * sizeof(char));
-			else
-				line = (char *)malloc((line_len + 2) * sizeof(char));
+			line = (char *)malloc((line_len + 2) * sizeof(char));
 			if (!line)
 			{
-				ft_clear_str(static_buff, BUFFER_SIZE + 1);
 				free(buff);
 				return (NULL);
 			}
-			if (!eol)
-				ft_strlcpy(line, buff, line_len + 1);
-			else
-				ft_strlcpy(line, buff, line_len + 2);
+			ft_strlcpy(line, buff, line_len + 2);
 			if (!eol)
 				remain_len = i + n - line_len;
 			else
@@ -84,7 +77,6 @@ char	*get_next_line(int fd)
 		aux = (char *)malloc((i + BUFFER_SIZE + 1) * sizeof(char));
 		if (!aux)
 		{
-			ft_clear_str(static_buff, BUFFER_SIZE + 1);
 			free(buff);
 			return (NULL);
 		}

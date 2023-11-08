@@ -6,23 +6,22 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:46:05 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/03 16:41:59 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/08 19:34:24 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+// delete include for macOS version:
+#include <stdint.h>
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+size_t	ft_strlen(char *s)
 {
-	unsigned int	i;
+	size_t	len;
 
-	i = 0;
-	while (i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	return (dest);
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (len);
 }
 
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
@@ -40,25 +39,24 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 
-int	ft_lentoeol(char *line, int *eol_flag)
+void	ft_clear_str(char *str, size_t size)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (line[i] != '\0' && line[i] != '\n' && (i + 1) < BUFFER_SIZE)
+	while (i < size)
+	{
+		str[i] = '\0';
 		i++;
-	if (line[i] == '\n' || line[i] == '\0')
-		*eol_flag = 1;
-	else
-		*eol_flag = 0;
-	return (i);
+	}
 }
 
-int	ft_findeol(char *line, char **eol)
+size_t	ft_findeol(char *line, char **eol)
 {
-	int		i;
+	size_t	i;
 
 	i = 0;
+	*eol = NULL;
 	while (line[i] != '\0')
 	{
 		if (line[i] == '\n')
@@ -66,42 +64,7 @@ int	ft_findeol(char *line, char **eol)
 			*eol = &line[i];
 			break ;
 		}
-		else
-			*eol = NULL;
 		i++;
 	}
 	return (i);
-}
-
-size_t	ft_strlen(char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void			*p;
-	size_t			len;
-	unsigned char	*aux;
-
-	if (count >= SIZE_MAX || size >= SIZE_MAX)
-		return (NULL);
-	len = count * size;
-	p = (void *)malloc(len);
-	if (p)
-	{
-		aux = p;
-		while (len > 0)
-		{
-			*aux = 0;
-			aux++;
-			len--;
-		}
-	}
-	return (p);
 }
