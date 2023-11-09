@@ -35,7 +35,7 @@ typedef struct s_buff
 	size_t	line_len;
 }				t_buff;
 
-typedef int t_error;
+typedef int	t_error;
 
 /* AUX FUNCTIONS */
 size_t	ft_strlen(char *str);

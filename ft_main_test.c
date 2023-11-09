@@ -119,8 +119,24 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
+	printf("\nTEST 7: FILE THAT CONTAINS 1 HUGE LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	fd = open("test_file_6.txt", O_RDONLY);
+	if (fd < 0)
+		return (0);
+	new_line = get_next_line(fd);
+	while (new_line)
+	{
+		printf("line read = \"%s\"\n", new_line);
+		printf("---------\n\n");
+		free(new_line);
+		new_line = get_next_line(fd);
+	}
+	printf("line read = \"%s\"\n", new_line);
+	printf("---------\n\n");
+	close(fd);
+
 	i = 2;
-	printf("\nTEST 7: READ %d LINES FORM SCREEN (fd = 0)\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n", i);
+	printf("\nTEST 8: READ %d LINES FORM SCREEN (fd = 0)\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n", i);
 	fd = 0;
 	new_line = get_next_line(fd);
 	while (--i)
