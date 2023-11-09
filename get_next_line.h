@@ -20,6 +20,9 @@
 #  define BUFFER_SIZE 10
 # endif
 
+# define OK 0
+# define ERROR 1
+
 char	*get_next_line(int fd);
 
 typedef struct s_buff
@@ -27,9 +30,12 @@ typedef struct s_buff
 	int		fd;
 	char	*content;
 	size_t	prev_len;
+	ssize_t	bytes_read;
 	char	*eol;
 	size_t	line_len;
 }				t_buff;
+
+typedef int t_error;
 
 /* AUX FUNCTIONS */
 size_t	ft_strlen(char *str);

@@ -29,7 +29,7 @@ static ssize_t	read_file(t_buff *buff, char *static_buff)
 	return (bytes_read);
 }
 
-static char	*extract_line(t_buff *buff, char *static_buff, ssize_t bytes_read)
+static char	*extract_line(t_buff *buff, char *static_buff)
 {
 	char	*line;
 	size_t	remain_len;
@@ -44,8 +44,8 @@ static char	*extract_line(t_buff *buff, char *static_buff, ssize_t bytes_read)
 		return (NULL);
 	}
 	ft_strlcpy(line, buff->content, buff->line_len + 1);
-	remain_len = buff->prev_len + bytes_read - buff->line_len;
-	if (bytes_read != 0)
+	remain_len = buff->prev_len + buff->bytes_read - buff->line_len;
+	if (buff->bytes_read > 0)
 		ft_strlcpy(static_buff, buff->eol + 1, remain_len + 1);
 	static_buff[remain_len] = '\0';
 	free(buff->content);
@@ -69,42 +69,38 @@ static char	*resize_buffer(t_buff *buff, char *static_buff)
 	return (buff->content);
 }
 
-static char	*get_line(t_buff *buff, char *static_buff)
+static t_error	get_line(t_buff *buff, char *static_buff, char **line)
 {
-	char	*line;
-	ssize_t	bytes_read;
-
-	bytes_read = 1;
 	while (!buff->eol)
 	{
 		buff->line_len = ft_findeol(buff->content, &(buff->eol));
 		if (!(buff->eol))
 		{
-			bytes_read = read_file(buff, static_buff);
-			if (bytes_read < 0)
-				return (NULL);
+			buff->bytes_read = read_file(buff, static_buff);
+			if (buff->bytes_read < 0)
+				return (ERROR);
 			buff->line_len += \
 				ft_findeol(&(buff->content)[buff->prev_len], &(buff->eol));
 		}
-		if (buff->line_len == 0 && bytes_read == 0)
+		if (buff->line_len == 0 && buff->bytes_read == 0)
 		{
 			free(buff->content);
-			return (NULL);
+			return (ERROR);
 		}
-		if (buff->eol || bytes_read == 0)
+		if (buff->eol || buff->bytes_read == 0)
 		{
-			line = extract_line(buff, static_buff, bytes_read);
-			if (!line)
-				return (NULL);
+			*line = extract_line(buff, static_buff);
+			if (!(*line))
+				return (ERROR);
 			break ;
 		}
-		buff->prev_len += bytes_read;
+		buff->prev_len += buff->bytes_read;
 		buff->content = resize_buffer(buff, static_buff);
 		if (!buff->content)
-			return (NULL);
-		line = buff->content;
+			return (ERROR);
+		*line = buff->content;
 	}
-	return (line);
+	return (OK);
 }
 
 char	*get_next_line(int fd)
@@ -123,8 +119,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buff.eol = NULL;
 	buff.line_len = 0;
+	buff.bytes_read = 1;
 	ft_strlcpy(buff.content, static_buff, buff.prev_len + 1);
 	//buff.line_len = ft_findeol(buff.content, &(buff.eol));
-	line = get_line(&buff, static_buff);
+	if (get_line(&buff, static_buff, &line) == ERROR)
+		return (NULL);
 	return (line);
 }
