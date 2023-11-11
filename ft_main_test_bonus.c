@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:03:59 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/11 01:30:04 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/11 01:52:37 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
-	printf("\nTEST 4: FILE THAT CONTAINS 1 EMPTY LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 4: FILE THAT CONTAINS 1 EMPTY LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd = open("test_file_3.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
@@ -90,7 +90,7 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
-	printf("\nTEST 5: FILE THAT CONTAINS 2 EMPTY LINES\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 5: FILE THAT CONTAINS 2 EMPTY LINES\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd = open("test_file_4.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
@@ -106,7 +106,7 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
-	printf("\nTEST 6: FILE THAT CONTAINS JUST 1 CHAR\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 6: FILE THAT CONTAINS JUST 1 CHAR\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd = open("test_file_5.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
@@ -122,7 +122,7 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
-	printf("\nTEST 7: FILE THAT CONTAINS 1 HUGE LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 7: FILE THAT CONTAINS 1 HUGE LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd = open("test_file_6.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
@@ -154,7 +154,7 @@ int	main(void)
 	if (new_line)
 		free(new_line);
 
-	printf("\nTEST 9: FROM MULTIPLE FILE DESCRIPTORS AT THE SAME TIME\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 9: READ FROM MULTIPLE FILE DESCRIPTORS AT THE SAME TIME\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd1 = open("test_file_bonus_1.txt", O_RDONLY);
 	fd2 = open("test_file_bonus_2.txt", O_RDONLY);
 	fd3 = open("test_file_bonus_3.txt", O_RDONLY);
