@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 14:03:59 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/08 19:33:15 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/11 01:40:26 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
-	printf("\nTEST 4: FILE THAT CONTAINS 1 EMPTY LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 4: FILE THAT CONTAINS 1 EMPTY LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd = open("test_file_3.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
@@ -87,7 +87,7 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
-	printf("\nTEST 5: FILE THAT CONTAINS 2 EMPTY LINES\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 5: FILE THAT CONTAINS 2 EMPTY LINES\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd = open("test_file_4.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
@@ -103,7 +103,7 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
-	printf("\nTEST 6: FILE THAT CONTAINS JUST 1 CHAR\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 6: FILE THAT CONTAINS JUST 1 CHAR\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd = open("test_file_5.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
@@ -119,7 +119,7 @@ int	main(void)
 	printf("---------\n\n");
 	close(fd);
 
-	printf("\nTEST 7: FILE THAT CONTAINS 1 HUGE LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n");
+	printf("\nTEST 7: FILE THAT CONTAINS 1 HUGE LINE\n-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-\n\n");
 	fd = open("test_file_6.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
