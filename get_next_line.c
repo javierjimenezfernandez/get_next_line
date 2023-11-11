@@ -6,11 +6,9 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:45:45 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/09 00:45:00 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/11 01:07:13 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 #include "get_next_line.h"
 
@@ -103,7 +101,7 @@ char	*get_next_line(int fd)
 	t_buff		buff;
 	char		*line;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buff.fd = fd;
 	buff.prev_len = ft_strlen(static_buff);
