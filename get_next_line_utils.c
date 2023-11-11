@@ -6,13 +6,11 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:46:05 by javjimen          #+#    #+#             */
-/*   Updated: 2023/11/08 19:34:24 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/11/11 00:59:56 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-// delete include for macOS version:
-#include <stdint.h>
 
 size_t	ft_strlen(char *s)
 {
