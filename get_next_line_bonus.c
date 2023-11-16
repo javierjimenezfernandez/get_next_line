@@ -12,7 +12,7 @@
 
 #include "get_next_line_bonus.h"
 
-static t_error	read_file(t_buff *buff, char *static_buff)
+t_error	ft_read_file(t_buff *buff, char *static_buff)
 {
 	buff->bytes_read = \
 		read(buff->fd, &(buff->content)[buff->prev_len], BUFFER_SIZE);
@@ -28,7 +28,7 @@ static t_error	read_file(t_buff *buff, char *static_buff)
 	return (OK);
 }
 
-static t_error	extract_line(t_buff *buff, char *static_buff, char **line)
+t_error	ft_extract_line(t_buff *buff, char *static_buff, char **line)
 {
 	size_t	remain_len;
 
@@ -50,7 +50,7 @@ static t_error	extract_line(t_buff *buff, char *static_buff, char **line)
 	return (OK);
 }
 
-static t_error	resize_buffer(t_buff *buff, char *static_buff)
+t_error	ft_resize_buffer(t_buff *buff, char *static_buff)
 {
 	char	*aux;
 
@@ -67,13 +67,13 @@ static t_error	resize_buffer(t_buff *buff, char *static_buff)
 	return (OK);
 }
 
-static t_error	get_line(t_buff *buff, char *static_buff, char **line)
+t_error	ft_get_line(t_buff *buff, char *static_buff, char **line)
 {
 	while (buff->bytes_read)
 	{
 		if (!(buff->eol))
 		{
-			if (read_file(buff, static_buff) == ERROR)
+			if (ft_read_file(buff, static_buff) == ERROR)
 				return (ERROR);
 		}
 		if (buff->line_len == 0 && buff->bytes_read == 0)
@@ -83,12 +83,12 @@ static t_error	get_line(t_buff *buff, char *static_buff, char **line)
 		}
 		if (buff->eol || buff->bytes_read == 0)
 		{
-			if (extract_line(buff, static_buff, line) == ERROR)
+			if (ft_extract_line(buff, static_buff, line) == ERROR)
 				return (ERROR);
 			break ;
 		}
 		buff->prev_len += buff->bytes_read;
-		if (resize_buffer(buff, static_buff) == ERROR)
+		if (ft_resize_buffer(buff, static_buff) == ERROR)
 			return (ERROR);
 		*line = buff->content;
 	}
@@ -114,7 +114,7 @@ char	*get_next_line(int fd)
 	buff.bytes_read = 1;
 	ft_strlcpy(buff.content, static_buff[fd], buff.prev_len + 1);
 	buff.line_len = ft_findeol(buff.content, &(buff.eol));
-	if (get_line(&buff, static_buff[fd], &line) == ERROR)
+	if (ft_get_line(&buff, static_buff[fd], &line) == ERROR)
 		return (NULL);
 	return (line);
 }

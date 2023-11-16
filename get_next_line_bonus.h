@@ -27,8 +27,6 @@
 # define OK 0
 # define ERROR 1
 
-char	*get_next_line(int fd);
-
 typedef struct s_buff
 {
 	int		fd;
@@ -41,10 +39,14 @@ typedef struct s_buff
 
 typedef int	t_error;
 
-/* AUX FUNCTIONS */
+char	*get_next_line(int fd);
+t_error	ft_read_file(t_buff *buff, char *static_buff);
+t_error	ft_extract_line(t_buff *buff, char *static_buff, char **line);
+t_error	ft_resize_buffer(t_buff *buff, char *static_buff);
+t_error	ft_get_line(t_buff *buff, char *static_buff, char **line);
 size_t	ft_strlen(char *str);
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
-void	ft_clear_str(char *str, size_t size);
 size_t	ft_findeol(char *line, char **eol);
+void	ft_clear_str(char *str, size_t size);
 
 #endif
