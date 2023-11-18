@@ -37,18 +37,6 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 
-void	ft_clear_str(char *str, size_t size)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		str[i] = '\0';
-		i++;
-	}
-}
-
 size_t	ft_findeol(char *line, char **eol)
 {
 	size_t	i;
@@ -65,4 +53,16 @@ size_t	ft_findeol(char *line, char **eol)
 		i++;
 	}
 	return (i);
+}
+
+void	ft_clear_str(char *str, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		str[i] = '\0';
+		i++;
+	}
 }
