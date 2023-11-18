@@ -90,7 +90,6 @@ t_error	ft_get_line(t_buff *buff, char *static_buff, char **line)
 		buff->prev_len += buff->bytes_read;
 		if (ft_resize_buffer(buff, static_buff) == ERROR)
 			return (ERROR);
-		*line = buff->content;
 	}
 	return (OK);
 }

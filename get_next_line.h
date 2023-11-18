@@ -20,8 +20,12 @@
 #  define BUFFER_SIZE 10
 # endif
 
-# define OK 0
-# define ERROR 1
+# ifndef OK
+#  define OK 0
+# endif
+# ifndef ERROR
+#  define ERROR -1
+# endif
 
 typedef struct s_buff
 {
